@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<script>
+			function calcFactorial(i) {
+				if (i == 1)
+					return 1;
+				return i * calcFactorial(i - 1);
+			}
+
+
+			document.write('<table border="1" cellspacing="1" cellpadding="5">');
+			for (var i = 1; i < 11; i++) {
+				document.write('<tr>');
+				document.write('<td>' + i + '</td>');
+				document.write('<td>' + calcFactorial(i) + '</td>');
+				document.write('</tr>');
+			}
+			document.write('</table>');
+			document.write('<input type=button value=calculate Fac onclick=takeValue()>');
+			function takeValue() {
+				var num = prompt("Enter number");
+				if (isNaN(num) == true || num < 0 || num == "")
+					alert("enter valid number");
+				else
+					alert(calcFactorial(num));
+			}
+		</script>
+	</body>
+</html>

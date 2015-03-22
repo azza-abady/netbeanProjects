@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        Enter sentinse to split into words
+        <br/>
+        <input type="text" maxlength="50" id="gomla"/>
+        split by 
+        <input type="text" maxlength="5" id="dlim"/>
+        <input type="button" id=splitBtn value="Split" onclick="split()"/>
+        <br/>
+        sentines words
+        <br/>
+        <textarea id=words rows="15" cols="20"></textarea>
+        <br/>
+        the first 10 charachter of input string are: 
+        <input id=res type="text"/>
+        <script>
+            var txt=new String();
+            var delimiter=new String();
+            function split(){
+                txt=document.getElementById("gomla").value;
+                delimiter=document.getElementById("dlim").value;
+               var words= txt.split(delimiter.trim());
+              
+               value = words.join("\r\n");
+               document.getElementById("words").value=value;
+               substring=txt.substring(0,9);
+               document.getElementById("res").value=substring;
+            }
+        </script>
+    </body>
+</html>

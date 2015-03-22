@@ -1,0 +1,52 @@
+#game {
+	float:left;
+	position: relative;
+	background-color: ivory;
+	width: 500px;
+	height: 500px;
+	border: 1px black solid;
+	margin:auto;
+}
+#console{
+	float: left;
+	margin-left:10px;
+	width: 500px;
+	height: 500px;
+	overflow:scroll;
+	border: 1px black solid;
+	display:none;
+}
+.candy {
+	position: absolute;
+	cursor: pointer;
+	margin: 2px;
+	width: 44px;
+	height: 44px;
+	border: 1px solid black;
+}
+.candy:hover {
+	/*opacity: 0.8;
+	border-color: #FF0000;*/
+}
+.selected {
+	opacity: 0.8;
+	border-color: #FF0000;
+}
+.red {
+	background-color: red;
+}
+.green {
+	background-color: green;
+}
+.blue {
+	background-color: blue;
+}
+.yellow {
+	background-color: yellow;
+}
+.orange {
+	background-color: ivory;
+}
+.purple {
+	background-color: purple;
+}

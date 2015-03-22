@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<hibernate-mapping>
+    <class name="DAO.Person" table="person"
+           catalog="inheritance3">
+        <id name="id" column="id" type="int" >
+            <generator class="increment"/>
+        </id>
+        <discriminator column="person_type" type="string"/>
+        <property name="firstName" column="first_name" type="string"/>
+        <property name="lastName" column="last_name" type="string"/>
+    </class>   
+    <subclass name="DAO.Student" extends="DAO.Person" discriminator-value="Student">
+        <property name="department" column="department" type="string"/>
+    </subclass>
+    <subclass name="DAO.Teacher" extends="DAO.Person" discriminator-value="Teacher">
+        <property name="hireDate" column="hire_date" type="date"/>
+    </subclass>
+
+</hibernate-mapping>

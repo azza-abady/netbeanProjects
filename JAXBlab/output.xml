@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MyMsg>
+    <Header>hello JAXB</Header>
+    <Msg>
+        <from>azza</from>
+        <to>sara</to>
+        <body>hello</body>
+    </Msg>
+</MyMsg>

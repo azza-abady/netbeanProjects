@@ -1,0 +1,58 @@
+{
+    "Library": {
+        "location": "",
+        "description": "",
+        "librarian": "",
+        "book": [{
+                "title": "book1 ",
+                "ISBN": "",
+                "Author": "",
+                "preface": "",
+                "part": [{
+                        "title": "part1",
+                        "chapter": [{
+                                "title": "",
+                                "summary": "",
+                                "section": [{
+                                        "conten": ""
+
+                                    }]
+
+                            }]
+
+                    },
+                    {
+                      "title": "part2",
+                        "chapter": [{
+                                "title": "",
+                                "summary": "",
+                                "section": [{
+                                        "conten": ""
+
+                                    }]
+
+                            }]  
+                    }]
+            },
+            {
+              "title": "book2 ",
+                "ISBN": "",
+                "Author": "",
+                "preface": "",
+                "part": [{
+                        "title": "",
+                        "chapter": [{
+                                "title": "",
+                                "summary": "",
+                                "section": [{
+                                        "conten": ""
+
+                                    }]
+
+                            }]
+
+                    }]  
+            }]
+
+    }
+}

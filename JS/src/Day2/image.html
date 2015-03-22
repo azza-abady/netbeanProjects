@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="move_init()">
+       
+        <img  style="position: absolute; left:50px;top:60px;z-index: 5;cursor: move;" src="C:\Users\azza\Documents\NetBeansProjects\JS\src\Day2\carIcon.png"  onmousedown="move_img(this);"/>
+        <script>
+            mous_x=0,mous_y=0;
+            img_x=0,img_y=0;
+             image=null;
+            function move_init()
+      {
+        document.onmousemove = move;
+        document.onmouseup = stop;
+      }
+      function stop()
+      {
+        image = null;
+      }
+      function move(e)
+      {
+        mous_x = document.all ? window.event.clientX : e.pageX;
+        mous_y = document.all ? window.event.clientY : e.pageY;
+        if(image != null)
+        {
+          image.style.left = (mous_x - img_x) + "px";
+          image.style.top = (mous_y - img_y) + "px";
+        }
+      }
+      function move_img(img)
+      {
+        image = img;
+        img_x = mous_x - image.offsetLeft;
+        img_y = mous_y - image.offsetTop;
+
+      }
+        </script>
+    </body>
+</html>

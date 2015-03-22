@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="Style1.css">
+    </head>
+    <body>
+        <form class="form-container" id="myForm">
+            <div class="form-title"><h2>Sign up</h2></div>
+            <div class="form-title">First Name</div>
+            <input class="form-field" type="text" name="firstname" /><span id="vlidFname"></span><br />
+            <div class="form-title">Last Name</div>
+            <input class="form-field" type="text" name="lastname" onblur="checkForm()" /><br />
+            <div class="form-title">Email</div>
+            <input class="form-field" type="text" name="email" onblur="checkForm()" /><span id="vlidEmail"></span><br />
+            <div class="submit-container">
+                <input class="submit-button" type="button" value="Submit" onclick="checkForm()"/>
+            </div>
+        </form>
+
+        <script>
+
+            var F = {
+                fname: {
+                    minLength: 1,
+                    maxLength: 15
+                },
+                lname: {
+                    minLength: 1,
+                    maxLength: 25
+                },
+                validateLength: function(formEl, type) {
+                    if (formEl.value.trim().length > type.maxLength || formEl.value.trim().length < type.minLength) {
+                        document.getElementById('vlidFname').innerHTML = "<font font-size=20px color=red>required</font>"
+                        return false;
+                    } else {
+                        document.getElementById('vlidFname').innerHTML = ""
+                        return true;
+                    }
+                },
+                validateEmail: function(formEl) {
+                    var regEx = "[a-z][a-zA-Z1-9_.-]+@[a-z]+.[a-z]+";
+                    if (formEl.value.trim().match(regEx)) {
+                        document.getElementById("vlidEmail").innerHTML = "";
+
+
+                        return true;
+                    }
+                    else {
+                        document.getElementById('vlidEmail').innerHTML = "<font font-size=20px color=red>please Enter Email like xxx@xx.cvb</font>";
+                        return false;
+                    }
+                }
+            }
+            function checkForm() {
+                var ourForm = document.getElementById('myForm');
+                var inputs = ourForm.getElementsByTagName('input');
+                if (F.validateLength(inputs[0], F.fname)) {
+                    if (F.validateLength(inputs[1], F.lname)) {
+                        if (F.validateEmail(inputs[2])) {
+                            document.getElementById('submit').disabled = false;
+                            return true;
+                        }
+                    }
+                }
+                document.getElementById('submit').disabled = 'disabled';
+                return false;
+            }
+        </script>
+
+</body>
+</html>

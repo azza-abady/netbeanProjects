@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--
+    TODO define vocabulary identification data
+    PUBLIC ID  : -//vendor//vocabulary//EN
+    SYSTEM ID  : http://server/path/__NAME__
+-->
+
+<!-- TODO define your own vocabulary/syntax. Example follows:  -->
+
+
+<!ELEMENT Library (librarian*,book*) >
+<!ATTLIST Library location CDATA #REQUIRED desc CDATA #IMPLIED>
+<!ELEMENT librarian EMPTY>
+<!ATTLIST librarian name CDATA #REQUIRED>
+<!ELEMENT book (Author+,preface,part*)>
+<!ATTLIST book title CDATA #REQUIRED ISBN CDATA #REQUIRED>
+<!ELEMENT Author EMPTY>
+<!ATTLIST Author name CDATA #REQUIRED>
+<!ELEMENT preface (#PCDATA)>
+<!ELEMENT part (chapter*)>
+<!ATTLIST part title CDATA #REQUIRED>
+<!ELEMENT chapter (summary?,section*)>
+<!ATTLIST chapter title CDATA #REQUIRED>
+<!ELEMENT summary (#PCDATA)>
+<!ELEMENT section (paragraph*)>
+<!ELEMENT paragraph (#PCDATA)> 
+

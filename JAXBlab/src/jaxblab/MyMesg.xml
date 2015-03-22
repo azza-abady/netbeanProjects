@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<MyMsg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:noNamespaceSchemaLocation="MsgSchema.xsd">
+    <Header>message 1 </Header>
+    <Msg>
+        <from>
+            
+        </from>
+        <to>
+            
+        </to>
+        <date>2001-02-11</date>
+        <body> 
+        
+        </body>
+    </Msg>
+    <Msg>
+        <from>
+            
+        </from>
+        <to>
+            
+        </to>
+        <date>2001-02-11</date>
+        <body> 
+        
+        </body>
+    </Msg>
+</MyMsg>

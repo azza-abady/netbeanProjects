@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="Style1.css">
+        <script>
+
+
+        </script>
+    </head>
+    <body>
+
+        <form class="form-container" name="register" method="get">
+            <div class="form-title"><h2>Profile</h2></div>
+            <div class="form-title">Name  <span id=vlidName></span></div>
+            <input class="form-field" id="name" type="text" name="firstname" onblur="validateName()" />
+            <div class="form-title">Email  <span id=vlidEmail></span></div>
+            <input class="form-field" id="email" type="text" name="email" onblur="ValidateEmail()" />
+            <div class="form-title">Telephone  <span id=vlidTel></span></div>
+            <input class="form-field" id="tel" type="tel" name="tele" onblur="validatePhone()"/>
+            <div class="form-title"> 
+
+                <input type="radio" id="male" name="radio" value="male" checked/>
+                <label for="male"><span></span>Male</label>
+
+                <input type="radio" id="fmale" name="radio" value="female" />
+                <label for="fmale"><span></span>Female</label>
+                <br/><span id=vlidGender></span>
+            </div>
+            <div class="form-title">Select your favorit products<br/><span id="check"></span></div>
+
+            <input class="squaredThree" type="checkbox" value="nokia communiccator" id="op1" name="option" />Nokia communicator 
+            <br/>
+            <input class="squaredThree" type="checkbox" value="Nokia Banana" id="op2" name="option"  />Nokia Banana
+            <br/>
+            <input class="squaredThree" type="checkbox" value="Nokia 6110" id="op3" name="option"  />Nokia 6110
+            <br/>
+            <div class="form-title"> Select your country</div>
+
+            <div class="dropdown">
+                <select id="country" name="country_list" class="dropdown-select" >
+                    <option value="s">Please choose countary</option>
+                    <option value="egypt">Egypt</option>
+                    <option value="France">France</option>
+                    <option value="united state">United state</option>
+                </select> 
+            </div><span id="error"></span>
+            <div class="submit-container">
+                <input class="submit-button" type="button" onclick="checksubmit()" value="Submit" />
+                <input class="submit-button" type="button" onclick="changeCSS('Style2.css', '0');" value="switch style"/>
+                <input class="submit-button" type="button" value="cancel"/>
+            </div>
+        </form>
+        <script>
+            var txt = "";
+            var m = "";
+            var choosen = "";
+            function validateName() {
+                if (document.getElementById("name").value.trim() == "") {
+                    document.getElementById("vlidName").innerHTML = "<font font-size=20px color=red>please Enter your name</font>";
+                    document.register.Name.focus();
+                    return false;
+                }
+                else {
+                    document.getElementById("vlidName").innerHTML = "";
+                    return true;
+                }
+            }
+            function ValidateEmail()
+            {
+                var mailformat = "[a-z][a-zA-Z1-9_.-]+@[a-z]+.[a-z]+";
+                if (document.getElementById("email").value.trim().match(mailformat))
+                {
+                    document.getElementById("vlidEmail").innerHTML = "";
+
+                    return true;
+                }
+                else
+                {
+                    document.getElementById("vlidEmail").innerHTML = "<font font-size=20px color=red>please Enter Email like xxx@xx.cvb</font>";
+                    document.getElementById("email").value = "";
+
+                    return false;
+                }
+            }
+            function validatePhone() {
+                var tel = document.getElementById("tel").value.trim();
+                if (isNaN(tel) || tel.length > 10 || tel.length < 6) {
+                    document.getElementById("vlidTel").innerHTML = "<font font-size=20px color=red>enter vlid phone number</font>";
+                    tel.value = "";
+                    return false;
+                }
+                else
+                {
+                    document.getElementById("vlidTel").innerHTML = "";
+                    return true;
+                }
+            }
+            function validateRadio() {
+                var male = document.getElementById("male").checked;
+                var fmale = document.getElementById("fmale").checked;
+
+                if (male) {
+                    m = document.getElementById("male").value;
+
+                    return true;
+                }
+                else if (fmale) {
+                    m = document.getElementById("fmale").value;
+                    return true;
+                }
+                else {
+                    //   document.getElementById("vlidGender").innerHTML = "<font font-size=20px color=red>select your gender</font>";
+                    return false;
+                }
+            }
+            function dropListValidation() {
+
+                var length = document.getElementById("country").length;
+                var i;
+                for (i = 0; i < length; i++) {
+                    if (document.register.country_list[i].selected) {
+                        choosen = document.register.country_list[i].value;
+                    }
+
+                }
+                if (choosen == document.register.country_list[0].value) {
+                    // document.getElementById("error").innerHTML = "<font font-size=20px color=red>select your countary</font>";
+                    return false;
+                }
+                else {
+
+                    document.getElementById("error").innerHTML = "";
+                    return true;
+                }
+            }
+            function checkBoxValidation() {
+                if (!(document.getElementById("op1").checked) && !(document.getElementById("op2").checked) && !(document.getElementById("op3").checked)) {
+                    document.getElementById("check").innerHTML = "<font font-size=20px color=red>select at least one product</font>";
+                    return false;
+                }
+                else
+                {
+                    var i;
+                    for (i = 0; i < document.register.option.length; i++) {
+                        if (document.register.option[i].checked) {
+                            txt = txt + document.register.option[i].value + " ";
+                        }
+                    }
+                    document.getElementById("check").innerHTML = "";
+
+                    return true;
+                }
+            }
+            function checksubmit() {
+
+                var checkName = validateName();
+                var checkEmail = ValidateEmail();
+                var checkPhone = validatePhone();
+                var checkGender = validateRadio();
+                var checkCountry = dropListValidation();
+                var checkProduct = checkBoxValidation();
+
+                if (checkName && checkEmail && checkPhone && checkGender && checkCountry && checkProduct) {
+                    var wind = window.open("", "InfoWindow", "width=500, height=600 resizable=yes");
+                    wind.document.write("Hi " + document.getElementById("name").value);
+                    wind.document.write("<p>your Email is</p>" + document.getElementById("email").value);
+                    wind.document.write("<p>your phone is</p>" + document.getElementById("tel").value);
+                    wind.document.write("<p>your Gender is</p>" + m);
+                    wind.document.write("<p>your counrty is</p>" + document.getElementById("country").value);
+                    wind.document.write("<p>your products is </p>" + txt);
+
+                    return true;
+                }
+                else {
+
+                    if (!checkGender) {
+                        //  document.getElementById("vlidGender").innerHTML = "<font font-size=20px color=red>select your gender</font>";
+                    }
+                    if (!checkCountry) {
+                        document.getElementById("error").innerHTML = "<font font-size=20px color=red>select your countary</font>";
+                    }
+                    else {
+                        document.getElementById("error").innerHTML = ""
+                    }
+                    if (!checkProduct) {
+                        document.getElementById("check").innerHTML = "<font font-size=20px color=red>select at least one product</font>";
+                    }
+                    else {
+                        document.getElementById("check").innerHTML = ""
+                    }
+                    return false;
+                }
+            }
+            function changeCSS(cssFile, cssLinkIndex) {
+                var flag = true;
+                var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+
+                var newlink = document.createElement("link");
+                newlink.setAttribute("rel", "stylesheet");
+                newlink.setAttribute("type", "text/css");
+                newlink.setAttribute("href", cssFile);
+
+                if (flag) {
+                    alert("if");
+                    document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+                    alert(document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink));
+                    flag = false;
+                }
+                else {
+                    document.getElementsByTagName("head").item(0).replaceChild(oldlink, newlink);
+                    flag = true;
+                }
+            }
+        </script>
+    </body>
+</html>

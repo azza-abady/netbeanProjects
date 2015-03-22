@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<hibernate-mapping>
+    <class name="com.Buyer_bid_Product" table="buyer_bid_product"
+catalog="biddingschema">
+        <composite-id name="id" class="com.BuyerBidProductId">
+            <key-property name="buyer_Id" type="integer">
+                <column name="buyer_id" />
+            </key-property>
+            <key-property name="product_id" type="integer">
+                <column name="product_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="buyer" class="com.Buyer" insert="false" update="false"  >
+            <column name="buyer_id"/>
+        </many-to-one>
+        <many-to-one name="product" class="com.Product" insert="false" update="false">
+            <column name="product_id"/>
+        </many-to-one>
+<property name="Date" column="date" type="date"/>
+<property name="amount" column="amount" type="float"/>
+<property name="quantity" column="quantity" type="integer"/>
+</class>
+</hibernate-mapping>

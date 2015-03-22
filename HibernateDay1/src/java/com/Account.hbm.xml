@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 18, 2015 1:54:38 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.Account" table="Account" catalog="helloworlddb">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="userName" type="string">
+            <column name="user_name" />
+        </property>
+        <property name="fullName" type="string">
+            <column name="full_name" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday" />
+        </property>
+        <property name="image" type="binary">
+            <column name="image" />
+        </property>
+        <property name="pic" type="blob">
+            <column name="maxPhoto" />
+        </property>
+    </class>
+</hibernate-mapping>

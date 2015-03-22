@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<hibernate-mapping>
+    <class name="com.Seller" table="seller"
+catalog="biddingschema">
+<id name="id" column="id" type="int" >
+    <generator class="foreign">
+        <param name="property">user</param>
+    </generator>
+</id>
+<one-to-one name="user" class="com.User" constrained="true"/>
+<set name="products" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="seller_id" />
+            </key>
+            <one-to-many class="com.Product" />
+        </set>
+<property name="value" column="value" type="string"/>
+</class>
+</hibernate-mapping>

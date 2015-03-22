@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+    </head>
+    <body>
+        <h1>The String to Search is: </h1>
+        <br/>
+        <textarea name="txtArea" id=txtArea rows="5" cols="30"></textarea><br/>
+        Enter substring to Search For: 
+        <input type="text" id=inputTxt name="inputText" maxlength="20"/>
+        <input type="button" value="Search" id=searchBtn name="Search" onclick="search()"/>At Index
+        <input type="text" name="indxText" id=indx maxlength="20" /><br/>
+        First Located Occurance at index:
+        <input type="text" id=first /><br/>
+        Last Located Occurance at index:
+        <input type="text" id=last /><br/>
+        First Occurance from your index located at 
+        <input type="text" id=firstIndx /><br/>
+        Last Occurance from your index Located at
+        <input type="text" id=lastIndx /><br/>
+        <script>
+            var textarea=new String();
+            var searchChar=new String();
+            
+            
+            function search(){
+            textarea= document.getElementById("txtArea").value;
+            searchChar=document.getElementById("inputTxt").value;
+            var index=parseInt(document.getElementById("indx").value);
+            var first= textarea.indexOf(searchChar);
+            var last= textarea.lastIndexOf(searchChar);
+            document.getElementById("first").value=first;
+            document.getElementById("last").value=last;
+            var firstAtindex=textarea.indexOf(searchChar,index);
+            var lastAtindex=textarea.lastIndexOf(searchChar,index);
+            document.getElementById("firstIndx").value=firstAtindex;
+            document.getElementById("lastIndx").value=lastAtindex;
+        }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 26, 2015, 2:57:13 PM
+    Author     : azza
+*/
+.root{
+    -fx-font: 40px "sans-serif";
+    -fx-fill: #ff0033
+}
+#text{
+    -fx-font: 25px "sans-serif";
+    -fx-fill: #0033cc
+}

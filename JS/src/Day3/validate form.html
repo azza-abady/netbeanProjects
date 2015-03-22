@@ -1,0 +1,207 @@
+<html>
+    <head>
+        <title>Registration</title>
+    </head>	
+    <body bgcolor="#e5edfa" topmargin="15">
+        <h1><center><font color="red">Profile</font></center></h1>
+    <center>
+        <form name="register" method="get">
+            <table cellspacing="8" border="6" width="350" bordercolor="red">
+                <tr border="2" boredercolor="#d70c1a">
+                    <th colspan="2"><u>Personal Data</u></th>
+                </tr>
+                <tr border="2" boredercolor="#a40b16">
+                    <td align="left">Name</td>
+                    <td><input onblur="validateName()" id=name name="Name" size="25" type="text" placeholder ="Enter your  name" /><br/><span id=vlidName></span></td>
+                </tr>
+                <tr border="2" boredercolor="#a40b16">
+                    <td align="left">Email</td>
+                    <td><input onblur="ValidateEmail()" id=email name="email" size="25" type="text" placeholder ="Enter your Email" /><br/><span id=vlidEmail></span></td>
+                </tr>
+                <tr border="2" boredercolor="#a40b16">
+                    <td align="left">Telephone</td>
+                    <td><input onblur="validatePhone()" name="tele" id=tel size="25" type="tel" /><br/><span id=vlidTel></span></td></td>
+                </tr>
+                <tr border="2" boredercolor="#a40b16">
+                    <td rowspan="2" align="center" valign="center"><b>Gender</b><br/><span id=vlidGender></span></td>
+                    <td><input  name="radio" id=male type="radio" value="male"/> Male</td>
+
+                </tr>
+                <tr border="2" boredercolor="#a40b16">
+                    <td><input  name="radio" id=fmale type="radio" value="female"/> Female</td>
+
+                </tr>
+
+                <tr height="50" border="2" boredercolor="#a40b16">
+                    <td align="left">Select your country</td>
+                    <td valign="center">
+                        <select id="country" name="country_list">
+                            <option value="s">Please choose countary</option>
+                            <option value="egypt">Egypt</option>
+                            <option value="France">France</option>
+                            <option value="united state">United state</option>
+                        </select>
+                        <br/><span id=error></span>
+                    </td>
+                </tr>
+                <tr border="2" boredercolor="#a40b16">
+                    <th colspan="2"><u>Select the product of interset</u><br/><span id=check></span></th>
+                </tr>
+                <tr border="2" boredercolor="#a40b16">
+                    <td><input id=op1 name="option" type="checkbox" value="communicator" />Nokia communicator </td>
+                    <td><input id=op2 name="option" type="checkbox" value="Banana" /> Nokia Banana</td>
+                </tr>
+                <tr border="2" boredercolor="#a40b16">
+                    <td><input id=op3  name="option" type="checkbox" value="nokis 6110" /> Nokia 6110</td>
+                    <td><input id=op4  name="option" type="checkbox" value="computer" /> Computer Staff</td>
+
+                </tr>
+                <tr>
+                    <td colspan="2"><center><b>Comments</b>
+                    <textarea cols="50" rows="5" name="area1"></textarea></center></td>
+                </tr> 
+                <tr border="2" boredercolor="#a40b16">
+                    <td colspan="2"><center><input type="button" onclick="checksubmit()" value="Submit" id="btn_Ok"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Canacel" id=cancelBtn/></center></td>
+
+                </tr>
+
+            </table>
+        </form>
+    </center>
+    <script>
+        var txt = "";
+        var m = "";
+        var choosen = "";
+        function validateName() {
+            if (document.getElementById("name").value.trim() == "") {
+                document.getElementById("vlidName").innerHTML = "<font font-size=20px color=blue>please Enter your name</font>";
+                document.register.Name.focus();
+                return false;
+            }
+            else {
+                document.getElementById("vlidName").innerHTML = "";
+                return true;
+            }
+        }
+        function ValidateEmail()
+        {
+            var mailformat = "[a-z][a-zA-Z1-9_.-]+@[a-z]+.[a-z]+";
+            if (document.getElementById("email").value.match(mailformat))
+            {
+                document.getElementById("vlidEmail").innerHTML = "";
+
+                return true;
+            }
+            else
+            {
+                document.getElementById("vlidEmail").innerHTML = "<font font-size=20px color=blue>please Enter Email like xxx@xx.cvb</font>";
+                document.getElementById("email").value = "";
+
+                return false;
+            }
+        }
+        function validatePhone() {
+            var tel = document.getElementById("tel").value;
+            if (isNaN(tel) || tel.length > 10 || tel.length < 6) {
+                document.getElementById("vlidTel").innerHTML = "<font font-size=20px color=blue>enter vlid phone number</font>";
+                tel.value = "";
+                return false;
+            }
+            else
+            {
+                document.getElementById("vlidTel").innerHTML = "";
+                return true;
+            }
+        }
+        function validateRadio() {
+            var male = document.getElementById("male").checked;
+            var fmale = document.getElementById("fmale").checked;
+
+            if (male) {
+                m = document.getElementById("male").value;
+
+                return true;
+            }
+            else if (fmale) {
+                m = document.getElementById("fmale").value;
+                return true;
+            }
+            else {
+               // document.getElementById("vlidGender").innerHTML = "<font font-size=20px color=blue>select your gender</font>";
+                return false;
+            }
+        }
+        function dropListValidation() {
+
+            var length = document.getElementById("country").length;
+            var i;
+            for (i = 0; i < length; i++) {
+                if (document.register.country_list[i].selected) {
+                    choosen = document.register.country_list[i].value;
+                }
+                break;
+            }
+            if (choosen == document.register.country_list[0].value) {
+                document.getElementById("error").innerHTML = "<font font-size=20px color=blue>select your countary</font>";
+                return false;
+            }
+            else {
+                document.getElementById("error").innerHTML = "";
+                return true;
+            }
+        }
+        function checkBoxValidation() {
+            if (!(document.getElementById("op1").checked) && !(document.getElementById("op2").checked) && !(document.getElementById("op3").checked) && !(document.getElementById("op4").checked)) {
+              //  document.getElementById("check").innerHTML = "<font font-size=20px color=blue>select at least one product</font>";
+                return false;
+            }
+            else
+            {
+                var i;
+                for (i = 0; i < document.register.option.length; i++) {
+                    if (document.register.option[i].checked) {
+                        txt = txt + document.register.option[i].value + " ";
+                    } 
+                }
+                 document.getElementById("check").innerHTML = "";
+                
+                 return true;
+            }
+        }
+        function checksubmit() {
+
+            var checkName = validateName();
+            var checkEmail = ValidateEmail();
+            var checkPhone = validatePhone();
+            var checkGender = validateRadio();
+            var checkCountry = dropListValidation();
+            var checkProduct = checkBoxValidation();
+
+            if (checkName && checkEmail && checkPhone && checkGender && checkCountry && checkProduct) {
+                var wind = window.open("", "InfoWindow", "width=500, height=600 resizable=yes");
+                wind.document.write("Hi " + document.getElementById("name").value);
+                wind.document.write("<p>your Email is</p>" + document.getElementById("email").value);
+                wind.document.write("<p>your phone is</p>" + document.getElementById("tel").value);
+                wind.document.write("<p>your Gender is</p>" + m);
+                wind.document.write("<p>your counrty is</p>" + document.getElementById("country").value);
+                wind.document.write("<p>your products is </p>" + txt);
+
+                return true;
+            }
+            else {
+
+                if (!checkGender) {
+                    document.getElementById("vlidGender").innerHTML = "<font font-size=20px color=blue>select your gender</font>";
+                }
+                if (!checkCountry) {
+                    document.getElementById("error").innerHTML = "<font font-size=20px color=blue>select your Countary</font>";
+                }
+                if (!checkProduct) {
+                    document.getElementById("check").innerHTML = "<font font-size=20px color=blue>select at least one product</font>";
+                }
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

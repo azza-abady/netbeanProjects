@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="F:\WEB\javascript\jq.css" rel="stylesheet">
+        <link href="F:\WEB\javascript\theme.default.css" rel="stylesheet">
+        <script type="text/javascript" src="F:\WEB\javascript\jquery-1.11.2.js"></script>
+        <script type="text/javascript" src="F:\WEB\javascript\jquery.tablesorter.min.js"></script>
+        <script type="text/javascript" src="F:\WEB\javascript\jquery.tablesorter.widgets.min.js"></script>
+        <script type="text/javascript">
+          $(function(){
+		$('table').tablesorter({
+			widgets        : ['tim', 'columns'],
+			usNumberFormat : false,
+			sortReset      : true,
+			sortRestart    : true
+		});
+	});
+        </script>
+    </head>
+    <body>
+        <table class="tablesorter">
+          
+            <thead>
+            <tr>
+                <th>first name</th>
+                <th>last name</th>
+                <th>Email</th>
+                <th>Due</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>john</td>
+                <td>smith</td>
+                <td>jsmith@gmail.com</td>
+                <td>50.00$</td>
+            </tr>
+            <tr>
+                <td>frank</td>
+                <td>jason</td>
+                <td>fjason@gmail.com</td>
+                <td>75.00$</td>
+            </tr>
+            <tr>
+                <td>tim</td>
+                <td>bach</td>
+                <td>tbach@gmail.com</td>
+                <td>125.00$</td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

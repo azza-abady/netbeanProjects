@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 11, 2015 1:49:55 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="pojo.UserView" table="user_view" catalog="biddingschema">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="user_name" column="user_name" type="string"/>
+    </class>
+      
+</hibernate-mapping>

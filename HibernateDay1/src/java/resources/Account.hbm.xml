@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<hibernate-mapping>
+    <class name="com.Account" 
+catalog="helloworlddb">
+<id name="id" column="id" type="int" >
+<generator class="identity"/>
+</id>
+<property name="userName" column="user_name" type="string"/>
+<property name="fullName" column="full_name" type="string"/>
+<property name="password" column="password" type="string"/>
+<property name="address" column="address" type="string"/>
+<property name="phone" column="phone" type="string"/>
+<property name="birthday" column="birthday" type="date"/>
+<property name="image" column="image" type="binary"/>
+<property name="pic" column="maxPhoto" type="blob"/>
+</class>
+</hibernate-mapping>

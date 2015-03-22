@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script>
+            var notes = {};
+            notes.webdb = {};
+            notes.webdb.db = null;
+
+            notes.webdb.open = function() {
+                var dbSize = 5 * 1024 * 1024; // 5MB
+                notes.webdb.db = openDatabase("Todo", "1.0", "Todo manager", dbSize);
+            }
+            /* notes.webdb.dropTable=function(){
+             var db=notes.webdb.db;
+             db.transaction(function(tx){tx.executeSql("DROP TABLE IF EXISTS todoList")});
+             }*/
+            notes.webdb.createTable = function() {
+                var db = notes.webdb.db;
+                db.transaction(function(tx) {
+                    tx.executeSql("CREATE TABLE IF NOT EXISTS todoList(ID INTEGER PRIMARY KEY ASC, todoText TEXT, added_on DATETIME, todoColor TEXT)", []);
+                });
+            }
+
+            notes.webdb.addTodo = function(todoText, todoColor) {
+                var db = notes.webdb.db;
+                db.transaction(function(tx) {
+                    var addedOn = new Date();
+                    tx.executeSql("INSERT INTO todoList(todoText, added_on, todoColor) VALUES (?,?,?)",
+                            [todoText, addedOn, todoColor],
+                            notes.webdb.onSuccess,
+                            notes.webdb.onError);
+                });
+            }
+
+            notes.webdb.onError = function(tx, e) {
+                alert("There has been an error: " + e.message);
+            }
+
+            notes.webdb.onSuccess = function(tx, r) {
+                // re-render the data.
+                notes.webdb.getAllTodoItems(loadTodoItems);
+            }
+
+
+            notes.webdb.getAllTodoItems = function(renderFunc) {
+                var db = notes.webdb.db;
+                db.transaction(function(tx) {
+                    tx.executeSql("SELECT * FROM todoList", [], renderFunc,
+                            notes.webdb.onError);
+                });
+            }
+
+            notes.webdb.deleteTodo = function(id) {
+                var db = notes.webdb.db;
+                db.transaction(function(tx) {
+                    tx.executeSql("DELETE FROM todoList WHERE ID=?", [id],
+                            notes.webdb.onSuccess,
+                            notes.webdb.onError);
+                });
+            }
+
+            function loadTodoItems(tx, rs) {
+                var rowOutput = "";
+                var todoItems = document.getElementById("todoItems");
+                for (var i = 0; i < rs.rows.length; i++) {
+                    rowOutput += renderTodo(rs.rows.item(i));
+                }
+
+                todoItems.innerHTML = rowOutput;
+            }
+            function drag(ev) {
+                ev.dataTransfer.setData("Text", ev.target.id);
+            }
+
+
+            function allowDrop(ev) {
+                ev.preventDefault();
+            }
+            var r;
+            function renderTodo(row) {
+                var id = row.ID;
+                r = row
+                return "<div draggable=true ondragstart='drag(event);' id=listitem style= background-color:" + row.todoColor + "; >" + row.todoText + "<br/>" + row.added_on + " [<a href='javascript:void(0);'  onclick='notes.webdb.deleteTodo(" + row.ID + ");'>Delete</a>]</div><br/>";
+            }
+            function drop(ev) {
+                ev.preventDefault;
+                var data = ev.dataTransfer.getData("Text");
+                ev.target.appendChild(document.getElementById(data));
+                notes.webdb.deleteTodo(r.ID);
+                document.getElementById("img").src="Trash.png";
+            }
+            function init() {
+                notes.webdb.open();
+                notes.webdb.createTable();
+                notes.webdb.getAllTodoItems(loadTodoItems);
+            }
+
+            function addTodo() {
+                var todo = document.getElementById("todo");
+                var todoColor = document.getElementById("colorSelector");
+                notes.webdb.addTodo(todo.value, todoColor.value);
+
+                todo.value = "";
+            }
+
+        </script>
+        <style>
+            .boxlist{   width: 353px;
+                        height: 400px;
+
+                        border: 3px #888888 solid;
+
+                        background-color: #f3e3e3;
+
+                        padding: 15px;
+
+                        font-size: inherit;
+                        font-weight: inherit;
+                        font-family: 'Times New Roman', Times, serif;
+                        font-style: inherit;
+                        text-decoration: inherit;}
+            #listitem{
+                padding: 3px;
+                cursor: move;
+                font-size: inherit;
+                font-weight: inherit;
+                font-family: 'Times New Roman', Times, serif;
+                font-style: inherit;
+                text-decoration: inherit;
+            }
+        </style>
+    </head>
+    <body onload="init();">
+        <form type="post" onsubmit="addTodo();
+                return false;">
+
+            <!--  <input type="text" id="todo" name="todo" placeholder="What do you need to do?" style="width: 200px;" />-->
+            <h2>To do Item </h2>
+            <textarea id="todo" name ="todo" placeholder="What do you need to do ?" rows="5" cols="20"></textarea><br/>
+            <label>
+                Note Color
+            </label>
+            <input id="colorSelector" type="color"/>
+            <input type="submit" value="Add Todo Item"/>
+            <br/>
+            <div class="boxlist" id="todoItems" style="float:left;"></div>
+            <div >
+                <img id="img" src="Empty-Trash.png" ondragover="allowDrop(event);" ondrop="drop(event);"/></div>
+        </form>
+    </body>
+</html>​
+

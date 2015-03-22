@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>  
+          var i=prompt("Enter Style of list"+'\n'+"1- Bullet, 2- Numbered, 3-lettered");
+          if(i>3||i==0||i<1||isNaN(i)==true||i==" ")
+              alert("please choose Write number");
+        </script>
+    </head>
+    <body>
+        <script>
+            switch(i){
+                case "1":
+                    document.write("<ul><li>item1</li><li>item2</li><li>item3</li></ul>");
+                    break;
+                case "2":
+                    document.write("<ol type=\"1\"><li>item1</li><li>item2</li><li>item3</li></ol>");
+                    break;
+                case "3":
+                    document.write("<ol type=\"A\"><li>item1</li><li>item2</li><li>item3</li></ol>");
+                    break;
+            }
+        </script>
+    </body>
+</html>
