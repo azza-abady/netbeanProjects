@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="caranimi.FXMLDocumentController">
+   <children>
+      <Group>
+         <children>
+            <Path fx:id="path" blendMode="SRC_ATOP" disable="true" fill="#ffffff00" layoutX="148.0" layoutY="61.0" onMouseClicked="#mouseClik" smooth="false" stroke="BLACK" strokeMiterLimit="0.0" strokeWidth="20.0">
+                <elements>
+                    <MoveTo y="100.0" />
+                  <QuadCurveTo controlX="80.0" x="200.0" y="100.0" />
+                  <QuadCurveTo controlX="280.0" controlY="180.0" x="380.0" y="100.0" />
+                  <QuadCurveTo controlX="280.0" x="200.0" y="100.0" />
+                  <QuadCurveTo controlX="100.0" controlY="180.0" y="100.0" />
+                </elements>
+               <effect>
+                  <Blend />
+               </effect>
+            </Path>
+            <Path fx:id="path1" blendMode="SRC_ATOP" disable="true" fill="#ffffff00" layoutX="148.0" layoutY="61.0" onMouseClicked="#mouseClik" stroke="WHITE" strokeMiterLimit="0.0" strokeWidth="5.0">
+               <effect>
+                  <Blend />
+               </effect>
+               <elements>
+                  <MoveTo y="100.0" />
+                  <QuadCurveTo controlX="80.0" x="200.0" y="100.0" />
+                  <QuadCurveTo controlX="280.0" controlY="180.0" x="380.0" y="100.0" />
+                  <QuadCurveTo controlX="280.0" x="200.0" y="100.0" />
+                  <QuadCurveTo controlX="100.0" controlY="180.0" y="100.0" />
+               </elements>
+            </Path>
+            <ImageView fx:id="car" fitHeight="64.0" fitWidth="44.0" onMouseClicked="#mouseClik" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@carIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

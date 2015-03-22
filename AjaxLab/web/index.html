@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="setInterval('startRequest()',5000)">
+        <script type="text/javascript">
+            var req=null;
+            function startRequest(){
+                if(window.XMLHttpRequest)
+                req=new XMLHttpRequest();
+            else if(window.ActiveXObject)
+                req=new ActiveXObject("Microsoft.XMLHTTP");
+            req.onreadystatechange=handleStateChange;
+            req.open("GET","innerHtml.txt?"+new Date(),true);
+            req.send(null);
+            }
+            function handleStateChange(){
+                if(req.readyState==4)
+                    document.getElementById("results").innerHTML=req.responseText;
+            }
+        </script>
+        <script>
+            var req=null;
+            function submitForm(){
+                if(window.XMLHttpRequest)
+                req=new XMLHttpRequest();
+            else if(window.ActiveXObject)
+                req=new ActiveXObject("Microsoft.XMLHTTP");
+            req.onreadystatechange=handleReq;
+            req.open("GET","data.txt",true);
+            req.send(null);
+            }
+            function handleReq(){
+                if(req.readyState==4)
+                document.ajaxLab.dynamic.value="Recevied:"+req.responseText;
+            else
+                document.ajaxLab.dynamic.value="Error code"+req.status;
+            }
+            function checkName(){
+                if(window.XMLHttpRequest)
+                req=new XMLHttpRequest();
+            else if(window.ActiveXObject)
+                req=new ActiveXObject("Microsoft.XMLHTTP");
+            req.onreadystatechange=handleReqName;
+            var name=document.getElementById('userName').value;
+            req.open("GET","serverSide?uName="+name,true);
+            req.send(null);
+            }
+            function handleReqName(){
+                if(req.readyState==4){
+            var result=req.responseText;    
+            document.getElementById("msg").innerHTML=result;
+            }
+            else
+                document.getElementById("msg").value="Error code"+req.status;
+            }
+        </script>
+        <form action="" method="Post" name="ajaxLab">
+            <input type="button" value="submit" onclick="submitForm()"/>
+            <input name="dynamic" value="" maxlength="100" type="text"/>
+        </form>
+        <form name="loginForm" method="post" action="">
+            <h3>Enter your name</h3>
+            <input id="userName" name="uName" type="text" onblur="checkName()"/>
+            <span id="msg"></span><br/>
+            <input type="password" name="pass" /><br/>
+            <input name="submit" value="submit" type="button"/>
+        </form>
+        <div id="results">
+            
+        </div>
+    </body>
+</html>

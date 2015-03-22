@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <style>
+            
+            .boxlist{   width: 353px;
+                        height: 400px;
+
+                        border: 3px #888888 solid;
+
+                        background-color: #f3e3e3;
+
+                        padding: 15px;
+
+                        font-size: inherit;
+                        font-weight: inherit;
+                        font-family: 'Times New Roman', Times, serif;
+                        font-style: inherit;
+                        text-decoration: inherit;
+            }
+        </style>
+        <script>
+            var req=null;
+            function submitUser(){
+                if(window.XMLHttpRequest)
+                req=new XMLHttpRequest();
+            else if(window.ActiveXObject)
+                req=new ActiveXObject("Microsoft.XMLHTTP");
+            req.onreadystatechange=handleReq;
+            var name=document.getElementById('uName').value;
+            var msg=document.getElementById('Message').value;
+            req.open("GET","serverSide?uName="+name+"&Message="+msg,true);
+            req.send(null);
+            }
+            function handleReq(){
+                if(req.readyState==4)
+                { 
+                  var result=req.responseText;
+                    document.getElementById("res").innerHTML=result;     
+                }
+            else
+                 document.getElementById("res").innerHTML=req.status;
+        }
+          function getMesgs(){
+              if(window.XMLHttpRequest)
+                req=new XMLHttpRequest();
+            else if(window.ActiveXObject)
+                req=new ActiveXObject("Microsoft.XMLHTTP");
+            req.onreadystatechange=handleReq1;
+            var url ="serverSide?"+new Date().getTime();
+            req.open("POST",url,true);
+            req.setRequestHeader("Content-Type","application/x-www-foem-urlencoded;");
+            req.send(null);
+          }
+          function handleReq1(){
+              if(req.readyState==4)
+              {
+                  var result=req.responseXML;
+                  txt="";
+                  var root= result.getElementsByTagName("msg");
+                  for(var i=0;i<root.length;i++){
+                    
+                    var user=root[i].childNodes[1].firstChild.nodeValue;
+                    var text=root[i].childNodes[2].firstChild.nodeValue;
+                    var date=root[i].childNodes[3].firstChild.nodeValue;
+                      txt=txt+user+" : "+text+" date: "+date+ "<br/>";
+                  }
+                  document.getElementById("msg").innerHTML=txt;
+          }
+      }
+        </script>
+                    
+    </head>
+    <body onload="setInterval('getMesgs()',3000)">
+        <form method="GET">
+        <div>userName 
+            <br/><input name="userName" type="text" id="uName"/>
+            <br/>Enter your message
+            <br/><input name="msg" type="text" id="Message"/>&nbsp;&nbsp;&nbsp;
+            <input name="send" value="Send" type="button" id="sendBtn" onclick="submitUser()"/>
+        </div><br/><br/>
+        <div class="boxlist" id="mesgs" style="float:left;">
+            <div id="res"></div><br/>
+            <div id="msg"></div>
+        </div>
+        </form>
+    </body>
+</html>
